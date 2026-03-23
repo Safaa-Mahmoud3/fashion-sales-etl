@@ -1,0 +1,21 @@
+order_id,order_date,customer_id,customer_name,city,country,product_id,product_name,category,quantity,unit_price,unit_cost
+2021,2025-02-01,C116,Harper Lee,Seattle,USA,P200,Summer Dress,Women,1,85,45
+2022,2025-02-01,C117,Daniel Clark,Denver,USA,P201,Slim Jeans,Men,2,60,30
+2023,2025-02-02,C118,Ella Lewis,Boston,USA,P203,Sneakers,Footwear,1,95,55
+2024,2025-02-02,C119,Matthew Robinson,Nashville,USA,P204,Leather Belt,Accessories,2,25,10
+2025,2025-02-03,C120,Abigail Walker,Baltimore,USA,P205,Office Shirt,Men,3,45,20
+2026,2025-02-03,C101,Liam Johnson,New York,USA,P207,Handbag,Women,1,120,70
+2027,2025-02-04,C121,Michael Hall,Louisville,USA,P208,Running Shoes,Footwear,2,110,65
+2028,2025-02-04,C122,Emily Allen,Portland,USA,P209,Sunglasses,Accessories,3,55,25
+2029,2025-02-05,C123,Joshua Young,Oklahoma City,USA,P210,Yoga Pants,Women,1,50,22
+2030,2025-02-05,C124,Madison Hernandez,Las Vegas,USA,P211,Polo Shirt,Men,2,40,18
+2031,2025-02-06,C125,Ethan King,Memphis,USA,P212,Winter Scarf,Accessories,4,30,12
+2032,2025-02-06,C103,Noah Brown,Chicago,USA,P213,Formal Trousers,Men,1,70,35
+2033,2025-02-07,C126,Avery Wright,Atlanta,USA,P214,Tank Top,Women,3,20,8
+2034,2025-02-07,C127,Sebastian Lopez,Miami,USA,P215,Ankle Boots,Footwear,1,130,75
+2035,2025-02-08,C128,Sofia Scott,Minneapolis,USA,P216,Baseball Cap,Accessories,2,22,9
+2036,2025-02-08,C129,Jack Green,Cleveland,USA,P217,Swimwear,Women,1,65,30
+2037,2025-02-09,C130,Grace Adams,Raleigh,USA,P218,Hoodie,Men,2,55,25
+2038,2025-02-09,C106,Sophia Martinez,Philadelphia,USA,P219,Flip Flops,Footwear,3,18,7
+2039,2025-02-10,C131,Owen Baker,Virginia Beach,USA,P202,Wool Coat,Women,1,150,90
+2040,2025-02-10,C132,Chloe Nelson,Colorado Springs,USA,P206,Sports Shorts,Men,2,30,12

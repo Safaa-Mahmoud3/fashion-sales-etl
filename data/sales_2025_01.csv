@@ -1,0 +1,21 @@
+order_id,order_date,customer_id,customer_name,city,country,product_id,product_name,category,quantity,unit_price,unit_cost
+2001,2025-01-03,C101,Liam Johnson,New York,USA,P200,Summer Dress,Women,2,85,45
+2002,2025-01-03,C102,Emma Williams,Los Angeles,USA,P201,Slim Jeans,Men,1,60,30
+2003,2025-01-04,C103,Noah Brown,Chicago,USA,P202,Wool Coat,Women,1,150,90
+2004,2025-01-04,C104,Olivia Jones,Houston,USA,P203,Sneakers,Footwear,2,95,55
+2005,2025-01-05,C105,William Garcia,Phoenix,USA,P204,Leather Belt,Accessories,3,25,10
+2006,2025-01-05,C101,Liam Johnson,New York,USA,P205,Office Shirt,Men,2,45,20
+2007,2025-01-06,C106,Sophia Martinez,Philadelphia,USA,P206,Sports Shorts,Men,3,30,12
+2008,2025-01-06,C107,James Anderson,San Antonio,USA,P207,Handbag,Women,1,120,70
+2009,2025-01-07,C108,Isabella Thomas,San Diego,USA,P208,Running Shoes,Footwear,1,110,65
+2010,2025-01-07,C109,Benjamin Jackson,Dallas,USA,P209,Sunglasses,Accessories,2,55,25
+2011,2025-01-08,C110,Mia White,San Jose,USA,P210,Yoga Pants,Women,2,50,22
+2012,2025-01-08,C102,Emma Williams,Los Angeles,USA,P211,Polo Shirt,Men,3,40,18
+2013,2025-01-09,C103,Noah Brown,Chicago,USA,P212,Winter Scarf,Accessories,2,30,12
+2014,2025-01-09,C111,Charlotte Harris,Austin,USA,P213,Formal Trousers,Men,1,70,35
+2015,2025-01-10,C112,Henry Wilson,Jacksonville,USA,P214,Tank Top,Women,4,20,8
+2016,2025-01-10,C104,Olivia Jones,Houston,USA,P215,Ankle Boots,Footwear,1,130,75
+2017,2025-01-11,C113,Amelia Moore,Columbus,USA,P216,Baseball Cap,Accessories,3,22,9
+2018,2025-01-11,C114,Alexander Taylor,Charlotte,USA,P217,Swimwear,Women,2,65,30
+2019,2025-01-12,C115,Evelyn Martin,Indianapolis,USA,P218,Hoodie,Men,1,55,25
+2020,2025-01-12,C106,Sophia Martinez,Philadelphia,USA,P219,Flip Flops,Footwear,2,18,7

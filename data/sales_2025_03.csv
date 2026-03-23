@@ -1,0 +1,11 @@
+order_id,order_date,customer_id,customer_name,city,country,product_id,product_name,category,quantity,unit_price,unit_cost
+2041,2025-03-01,C101,Liam Johnson,Brooklyn,USA,P200,Summer Dress,Women,1,88,45
+2042,2025-03-01,C102,Emma Williams,Los Angeles,USA,P201,Slim Jeans,Men,2,62,30
+2043,2025-03-02,C103,Noah Brown,Chicago,USA,P220,Denim Jacket,Men,1,95,55
+2044,2025-03-02,C133,Lily Carter,San Francisco,USA,P221,Floral Skirt,Women,2,48,22
+2045,2025-03-03,C104,Olivia Jones,Austin,USA,P215,Ankle Boots,Footwear,1,135,75
+2046,2025-03-03,C134,Ryan Mitchell,Seattle,USA,P222,Gym Bag,Accessories,1,65,35
+2047,2025-03-04,C106,Sophia Martinez,Philadelphia,USA,P219,Flip Flops,Footwear,1,20,7
+2048,2025-03-04,C135,Zoe Perez,Denver,USA,P223,Casual Blazer,Women,1,110,60
+2049,2025-03-05,C101,Liam Johnson,Brooklyn,USA,P207,Handbag,Women,1,125,70
+2050,2025-03-05,C136,Luke Roberts,Portland,USA,P224,Compression Socks,Accessories,3,15,5
