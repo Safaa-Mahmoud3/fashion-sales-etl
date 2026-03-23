@@ -1,45 +1,202 @@
-Overview
-========
+# Fashion Sales Data Warehouse
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+A comprehensive end-to-end Data Engineering project that transforms raw fashion retail sales data into an analytics-ready Data Warehouse using a Star Schema dimensional model, automated with Apache Airflow.
 
-Project Contents
-================
+---
 
-Your Astro project contains the following files and folders:
+## Project Overview
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes one example DAG:
-    - `example_astronauts`: This DAG shows a simple ETL pipeline example that queries the list of astronauts currently in space from the Open Notify API and prints a statement for each astronaut. The DAG uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically print a statement for each astronaut. For more on how this DAG works, see our [Getting started tutorial](https://www.astronomer.io/docs/learn/get-started-with-airflow).
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+The Fashion Sales Data Warehouse is designed to centralize business logic and provide a **Single Source of Truth** for sales analytics.
 
-Deploy Your Project Locally
-===========================
+### Key Objectives
 
-Start Airflow on your local machine by running 'astro dev start'.
+- **Clean & Standardize** — Transform raw sales, customer, and product data into structured formats using Python and pandas.
+- **Historical Tracking** — Implement Slowly Changing Dimensions (SCD Type 2) to track changes in customer and product information.
+- **Performance Optimization** — Use a Star Schema to support high-speed analytical querying.
+- **Automation** — Orchestrate the full ETL pipeline using Apache Airflow with dependency management and retry handling.
 
-This command will spin up five Docker containers on your machine, each for a different Airflow component:
+---
 
-- Postgres: Airflow's Metadata Database
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
-- DAG Processor: The Airflow component responsible for parsing DAGs
-- API Server: The Airflow component responsible for serving the Airflow UI and API
-- Triggerer: The Airflow component responsible for triggering deferred tasks
+## System Architecture
 
-When all five containers are ready the command will open the browser to the Airflow UI at http://localhost:8080/. You should also be able to access your Postgres Database at 'localhost:5432/postgres' with username 'postgres' and password 'postgres'.
+The project follows a multi-layer storage approach to ensure data integrity and traceability.
 
-Note: If you already have either of the above ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
+| Layer | Name | Description |
+|---|---|---|
+| 1 | Source | Raw CSV flat files containing monthly fashion sales transactions |
+| 2 | Staging | Temporary layer used for data cleansing and validation |
+| 3 | Data Warehouse | Final analytical layer built as a Star Schema |
 
-Deploy Your Project to Astronomer
-=================================
+---
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://www.astronomer.io/docs/astro/deploy-code/
+## Data Model — Star Schema
 
-Contact
-=======
+### Fact Table
+- `fact_sales` — Grain: one record per order line item
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+### Dimension Tables
+
+| Table | Notes |
+|---|---|
+| `dim_customer` | SCD Type 2 |
+| `dim_product` | SCD Type 2 |
+| `dim_date` | Full date hierarchy |
+
+### SCD Type 2
+Implemented for `dim_customer` and `dim_product`.
+Tracked columns: `effective_from`, `effective_to`, `is_current`
+
+---
+
+## Tech Stack
+
+| Component | Technology |
+|---|---|
+| Database | PostgreSQL |
+| ETL | Python + Pandas |
+| Orchestration | Apache Airflow |
+| Environment | Docker / Astro CLI |
+| Modeling | Star Schema / Dimensional Modeling |
+
+---
+
+## Airflow DAG
+
+The pipeline consists of 7 sequential tasks:
+
+| Task | Description |
+|---|---|
+| `create_dw_objects` | Creates schemas and tables if they do not exist |
+| `extract_and_clean` | Reads CSV files, cleans and validates data |
+| `load_staging` | Loads cleaned batch into `staging.stg_sales` |
+| `load_dimensions` | Loads dimensions and applies SCD Type 2 logic |
+| `load_fact` | Loads rows into `dwh.fact_sales` using surrogate keys |
+| `data_quality` | Validates row counts, NULLs, and referential integrity |
+| `archive_source_files` | Moves processed files to `data/archive/` |
+
+---
+
+## Dataset
+
+Fashion retail sales data containing US-based transactions.
+
+- **Format:** CSV flat files
+- **Records:** 50 transactions across 3 months (Jan–Mar 2025)
+- **Categories:** Women, Men, Footwear, Accessories
+- **Columns:** `order_id`, `order_date`, `customer_id`, `customer_name`, `city`, `country`, `product_id`, `product_name`, `category`, `quantity`, `unit_price`, `unit_cost`
+
+---
+
+## Repository Structure
+
+```
+fashion-sales-etl/
+│
+├── dags/
+│   └── retail_sales_etl.py         ← Airflow DAG (7 tasks)
+│
+├── data/
+│   ├── sales_2025_01.csv
+│   ├── sales_2025_02.csv
+│   ├── sales_2025_03.csv
+│   └── archive/                    ← Processed files moved here
+│
+├── include/
+│   ├── transform_helpers.py        ← ETL logic
+│   └── sql/
+│       └── create_dw_tables.sql    ← DW schema creation
+│
+├── postgres/
+│   └── init/
+│       └── init_db.sql             ← Database initialization
+│
+├── requirements.txt
+├── Dockerfile
+└── README.md
+```
+
+---
+
+## Getting Started
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/Safaa-Mahmoud3/fashion-sales-etl.git
+cd fashion-sales-etl
+```
+
+**2. Start the environment**
+```bash
+astro dev start
+```
+
+**3. Open Airflow UI**
+```
+http://localhost:8080
+```
+Default login: `admin` / `admin`
+
+**4. Add PostgreSQL Connection**
+
+Go to Admin → Connections → Add:
+
+| Field | Value |
+|---|---|
+| Conn Id | `fashion_dwh` |
+| Conn Type | Postgres |
+| Host | `postgres` |
+| Database | `fashion_dwh` |
+| Login | `postgres` |
+| Password | `postgres` |
+| Port | `5432` |
+
+**5. Add source CSV files to `data/` folder**
+
+**6. Trigger the DAG:** `fashion_sales_etl`
+
+---
+
+## Sample Validation Queries
+
+```sql
+-- Row counts
+SELECT COUNT(*) FROM staging.stg_sales;
+SELECT COUNT(*) FROM dwh.dim_customer;
+SELECT COUNT(*) FROM dwh.dim_product;
+SELECT COUNT(*) FROM dwh.dim_date;
+SELECT COUNT(*) FROM dwh.fact_sales;
+
+-- Sales by category
+SELECT p.category,
+       SUM(f.sales_amount)  AS total_sales,
+       SUM(f.profit_amount) AS total_profit
+FROM dwh.fact_sales f
+JOIN dwh.dim_product p ON f.product_key = p.product_key
+GROUP BY p.category
+ORDER BY total_sales DESC;
+
+-- SCD Type 2 history
+SELECT customer_id, customer_name, city,
+       effective_from, effective_to, is_current
+FROM dwh.dim_customer
+ORDER BY customer_id, effective_from;
+```
+
+---
+
+## Results
+
+- Automated a manual data processing workflow across multiple monthly CSV files
+- Improved data consistency through staging layer separation and validation checks
+- Enabled fast analytical queries using a structured Star Schema
+- Preserved historical changes in customer and product data using SCD Type 2
+
+---
+
+## Future Improvements
+
+- Add file hash tracking to prevent duplicate loads
+- Build interactive dashboards with Power BI
+- Integrate dbt for transformation and modeling
+- Deploy to cloud environment (AWS/GCP)
+- Extend to full Medallion Architecture
