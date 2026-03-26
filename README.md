@@ -212,7 +212,7 @@ An interactive dashboard built on top of the Data Warehouse to visualize:
 
 - **Data Source:** PostgreSQL Data Warehouse (`fashion_dwh`)
 - **Connection Mode:** Import (data loaded into Power BI for fast performance)
-- **File Location:** `/dashboard/Fashion_Sales_Dashboard.pbix`
+- **File Location:** `dashboard/Fashion_Sales_Dashboard.pbix`
 ![Dashboard](https://github.com/user-attachments/assets/34402198-81dc-4326-8e38-8722ec08d2c4)
 
 ---
