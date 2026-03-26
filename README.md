@@ -192,11 +192,30 @@ ORDER BY customer_id, effective_from;
 - Preserved historical changes in customer and product data using SCD Type 2
 
 ---
+## Power BI Dashboard
 
+An interactive dashboard built on top of the Data Warehouse to visualize key business metrics and enable data-driven decision making.
+
+### Dashboard Features
+
+| Feature | Description |
+|---------|-------------|
+| **Sales Performance** | Track total sales, profit, and quantity trends over time |
+| **Category Analysis** | Analyze sales breakdown by product category (Women, Men, Footwear, Accessories) |
+| **Geographic Distribution** | Visualize sales performance across cities and countries |
+| **Time Series** | Explore daily, monthly, and quarterly sales patterns |
+
+### Technical Implementation
+
+- **Data Source:** PostgreSQL Data Warehouse (`fashion_dwh`)
+- **Connection:** DirectQuery mode for real-time insights
+- **File Location:** `/dashboard/Fashion_Sales_Dashboard.pbix`
+![Dashboard](https://github.com/user-attachments/assets/34402198-81dc-4326-8e38-8722ec08d2c4)
+
+---
 ## Future Improvements
 
 - Add file hash tracking to prevent duplicate loads
-- Build interactive dashboards with Power BI
 - Integrate dbt for transformation and modeling
 - Deploy to cloud environment (AWS/GCP)
 - Extend to full Medallion Architecture
