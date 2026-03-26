@@ -95,6 +95,9 @@ fashion-sales-etl/
 ├── dags/
 │   └── retail_sales_etl.py         ← Airflow DAG (7 tasks)
 │
+├── dashboard/                       ← Power BI Dashboard
+│   └── Fashion_Sales_Dashboard.pbix
+│
 ├── data/
 │   ├── sales_2025_01.csv
 │   ├── sales_2025_02.csv
@@ -194,7 +197,7 @@ ORDER BY customer_id, effective_from;
 ---
 ## Power BI Dashboard
 
-An interactive dashboard built on top of the Data Warehouse to visualize key business metrics and enable data-driven decision making.
+An interactive dashboard built on top of the Data Warehouse to visualize:
 
 ### Dashboard Features
 
@@ -208,7 +211,7 @@ An interactive dashboard built on top of the Data Warehouse to visualize key bus
 ### Technical Implementation
 
 - **Data Source:** PostgreSQL Data Warehouse (`fashion_dwh`)
-- **Connection:** DirectQuery mode for real-time insights
+- **Connection Mode:** Import (data loaded into Power BI for fast performance)
 - **File Location:** `/dashboard/Fashion_Sales_Dashboard.pbix`
 ![Dashboard](https://github.com/user-attachments/assets/34402198-81dc-4326-8e38-8722ec08d2c4)
 
